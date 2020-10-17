@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  guacd:
+    image: guacamole/guacd:1.2.0
+    environment:
+      - "GUACD_LOG_LEVEL=debug"
+
+  guacamole-easy-tunnel:
+    build: .
+    image: mindcollapse/guacamole-easy-tunnel
+    environment:
+      - "GUACD_HOST=guacd"
+      - "GUACD_PORT=4822"
+      - "PAYLOAD_AES_KEY=QiWq7YFZDWKEdDin3w0o"
+      - "PAYLOAD_AES_IV=bp9SnEHB6h7twbM4shyhQ"
+    ports:
+      - "8080:8080"
